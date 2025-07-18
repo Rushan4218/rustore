@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Rubik } from "next/font/google";
 import "./globals.css";
+import { SessionProvider } from "next-auth/react";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const rubik = Rubik({
+  subsets: ["latin"], // or ['latin-ext'], depending on your need
+  weight: ["400", "500", "700"], // you can pick the weights you use
+  variable: "--font-rubik", // optional if using CSS vars
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,10 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${rubik.className} antialiased`}>
+        <ReactQueryProvider>
+          <SessionProvider>{children}</SessionProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

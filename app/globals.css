@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* 🎨 Thangka Color Palette */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* 🟥 Primary - Maroon vibes */
+  --color-primary: #a52a2a;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary-hover: #8b1e1e;
+  --color-primary-soft: #fdeeee;
+  --color-primary-border: #d24747;
+
+  /* ⚪ Neutral - Lokta paper & stone */
+  --color-neutral-lightest: #faf9f4; /* whisper white */
+  --color-neutral-light: #f5f1e3; /* creamy parchment */
+  --color-neutral: #d7d2c1; /* soft stone */
+  --color-neutral-dark: #b1ac9e; /* vintage beige */
+  --color-neutral-darker: #4a4742; /* dark taupe gray — readable */
+  --color-neutral-darkest: #2a2a28; /* near-black with warmth — headline ready */
+  --color-neutral-blackest: #161615; /* almost-black for max contrast */
+
+  /* text-colors */
+  --color-text-neutral: #3a3a3a; /* Default dark gray */
+  --color-text-dark: #1e1e1e; /* Darker black-ish for strong emphasis */
+  --color-text-light: #6b6b6b; /* Lighter gray for secondary text */
+
+  /* ✨ Accent - Muted sacred gold */
+  --color-accent: #d4af37;
+  --color-accent-hover: #b9962f;
+  --color-accent-soft: #fff8e1;
+  --color-accent-border: #c8a032;
+
+  /* error, success and warning */
+  --color-error: #b22222; /* Firebrick red — clear and strong */
+  --color-success: #2e7d32; /* Deep forest green — calm and trustworthy */
+  --color-warning: #d9822b; /* Warm amber/orange — attention-grabbing but not harsh */
+
+  /* Animations */
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-neutral-lightest text-neutral-darker;
+}
+
+.section {
+  @apply p-8 rounded-md shadow-md min-w-[380px] max-w-[840px] bg-neutral-light;
+}
+.label-input-group {
+  @apply flex flex-col gap-2;
+}
+.label-text {
+  @apply cursor-pointer group-focus-within:text-primary duration-300;
+}
+.input-field {
+  @apply outline-none px-2 py-1 border-black border rounded-md focus:border-primary duration-300;
+}
+/* buttons */
+.btn-primary {
+  @apply px-2 py-1 flex items-center justify-center gap-2 bg-primary text-neutral font-semibold rounded-md shadow-md cursor-pointer hover:bg-primary-hover active:scale-95 transition-all duration-300;
+}
+
+.error-text {
+  @apply text-error text-sm;
+}
+
+.page-title {
+  @apply text-xl font-semibold
 }
